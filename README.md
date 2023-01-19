@@ -118,83 +118,95 @@ The Suit class should have four values: `CLUBS, DIAMONDS, HEARTS, SPADES`; the `
     * Add a (`public`) "getter" method `getPointValue`.
 3)	Update your `Card` class to use the `enum` types you have created.
 4)	In the `Card` class, write a main method to re-implement the tests from Activity 1: Design and Create a Card Class.
-5)	Add a method to the `Card` class called `print` that prints a `String` in the format `<*N*> of <*suit*>` if the rank of the card is TWO-TEN, and print “<rank> of <suit>” otherwise.  The string should be all lower case.
+5)	Add a method to the `Card` class called `print` that prints a `String` in the format `<*N*> of <*suit*>` if the rank of the card is `TWO-TEN`, and print 
+"<*rank*> of <*suit*>" otherwise.  The string should be all lower case.
     **Notes**
-    * enums can be used in switch statements.
-    * use the name() method from enum
-•	use the toLowerCase() method from String
+    * `enum`s can be used in `switch` statements.
+    * `enum`s can be compared with `==`
+    * use the `name()` method from `enum`
+    * use the `toLowerCase()` method from `String`
 6)	Add a call to print to your main method.
  
-Activity 3: Initial Design of a Deck Class
+## Activity 3: Initial Design of a Deck Class
 
-Introduction:
+### Introduction:
 A standard deck contains 52 cards, one of each rank/suit combination ( ).  In this Activity, you will write a Deck class that represents a collection of Cards 
-Exploration:
+
+### Exploration:
 What instance variables do you need to represent a deck of cards?
-
-
-
 What methods should a deck object have?
-Implementation:
-1)	Create a new class Deck in the same folder as your Card class.
-Your class should have two instance variables, An ArrayList of Cards called deck, and an integer called size.
-•	The constructor should take two instance variables, an array of Rank and an array of Suit.
-•	Use nested for loops to add one card of each rank/suit combination to your ArrayList. (You can use for-each loops here)
-•	Initialize the size field to be the total number of cards in the deck.
-•	Finally call the void method shuffle (to be implemented later).
-2)	Add the following methods to your Deck class:
-•	isEmpty: This method should return true when the size of the deck is 0; false otherwise.
-•	size: This method returns the number of cards in the deck that are left to be dealt.
-•	deal: This method “deals” a card by removing a card from the deck and returning it, if there are any cards in the deck left to be dealt. It returns null if the deck is empty. There are several ways of accomplishing this task. Here are two possible algorithms:
-•	shuffle: just add a public void method with no contents for now.
-Algorithm 1: Because the cards are being held in an ArrayList, it would be easy to simply call the method that removes an object at a specified index, and return that object. This algorithm also requires a separate “discard” list to keep track of the dealt cards. This is necessary so that the dealt cards can be reshuffled and dealt again.
-Algorithm 2: Instead of removing the card, simply decrement the size instance variable and then return the card at size. In this algorithm, the size instance variable does double duty; it determines which card to “deal” and it also represents how many cards in the deck are left to be dealt. This is the algorithm that you should implement.
-3)	Once you have completed the Deck class, add a main method to Deck and test the methods: 
-•	create a deck, 
-•	check the size, 
-•	deal some cards, 
-•	make sure the deck has the correct number of cards after dealing, 
-•	deal the rest of the cards (while loop, using isEmpty),
-•	 make sure deal returns null from an empty Deck.
-4)	Explain in your own words the relationship between a Deck and a Card.
+
+### Implementation:
+1)	Create a new class `Deck` in the same project as your `Card` class.
+Your class should have two instance variables, An `ArrayList` of `Cards` called `deck`, and an `int` called `size`.
+    * The constructor should take two instance variables, an array of `Rank` and an array of `Suit`.
+    * Use nested `for` loops to add one card of each rank/suit combination to your `ArrayList`. (You can use [for-each loops](https://codehs.com/lms/assignment/89809670) here)
+    * Initialize the `size` field to be the total number of cards in the deck.
+    * Finally, call the `void` method `shuffle` (to be implemented later).
+2)	Add the following methods to your `Deck` class:
+    * `shuffle`: just add a `public void` method with no contents for now.
+    * `isEmpty`: This method should return `true` when the `size` of the deck is 0; `false` otherwise.
+    * `size`: This method returns the number of cards in the deck that are left to be dealt.
+    * `deal`: This method "deals" a card by removing a card from the deck and returning it, if there are any cards in the deck left to be dealt. It returns `null` if the deck is empty. There are several ways of accomplishing this task. Here are two possible algorithms:
+
+        #### Algorithm 1: 
+        Because the cards are being held in an `ArrayList`, it would be easy to simply call the method that removes an object at a specified index, and return that object. This algorithm also requires a separate "discard" list to keep track of the dealt cards. This is necessary so that the dealt cards can be reshuffled and dealt again.
+        #### Algorithm 2: 
+        Instead of removing the card, decrement the `size` instance variable and then return the card at size. In this algorithm, the size instance variable does double duty; it determines which card to "deal" and it also represents how many cards in the deck are left to be dealt. This is the algorithm that you should implement.
+
+3)	Once you have completed the `Deck` class, add a `main` method to `Deck` and test the methods: 
+    * create a `Deck`, 
+    * check the `size`, 
+    * deal some cards, 
+    * make sure the deck has the correct number of cards after dealing, 
+    * deal the rest of the cards (`while` loop, using `isEmpty`),
+    * make sure deal returns `null` from an empty `Deck`.
+4)	Explain in your own words the relationship between a `Deck` and a `Card`.
  
 
-Activity 4: Shuffling the Cards in a Deck
+## Activity 4: Shuffling the Cards in a Deck
 
-Introduction:
+### Introduction:
 Think about how you shuffle a deck of cards by hand. How well do you think it randomizes the cards in the deck?
-Exploration:
-We now consider the shuffling of a deck, that is, the permutation of its cards into a random-looking sequence. A requirement of the shuffling procedure is that any particular permutation has just as much chance of occurring as any other. We will be using the Math.random() method to generate random numbers to produce these permutations.
-Several ideas for designing a shuffling method come to mind. We will consider two:
-Perfect Shuffle
-Card players often shuffle by splitting the deck in half and then interleaving the two half-decks, as shown below.
 
+### Exploration:
+We now consider the shuffling of a deck, that is, the permutation of its cards into a random-looking sequence. A requirement of the shuffling procedure is that any particular permutation has just as much chance of occurring as any other. We will be using the `Math.random()` method to generate random numbers to produce these permutations. Several ideas for designing a shuffling method come to mind. We will consider two:
+#### Perfect (Faro) Shuffle
+Card players often shuffle by splitting the deck in half and then interleaving the two half-decks.  (See [Faro Shuffle](https://en.wikipedia.org/wiki/Faro_shuffle) ).
 
-This procedure is called a perfect shuffle if the interleaving alternates between the two half-decks. Unfortunately, the perfect shuffle comes nowhere near generating all possible deck permutations. In fact, eight shuffles of a 52-card deck return the deck to its original state!
+This procedure is called a perfect (or faro) shuffle if the interleaving alternates between the two half-decks. Unfortunately, the perfect shuffle comes nowhere near generating all possible deck permutations. In fact, eight shuffles of a 52-card deck return the deck to its original state!
 Consider the following “perfect shuffle” algorithm that starts with an array named cards that contains 52 cards and creates an array named shuffled.
-•	Initialize shuffled to contain 52 “empty” elements. Set k to 0.
-•	For j = 0 to 25,
-o	Copy cards[j] to shuffled[k];
-o	Set k to k+2. 
-•	Set k to 1.
-•	For j = 26 to 51,
-o	Copy cards[j] to shuffled[k];
-o	Set k to k+2.
+```pseudo
+Initialize shuffled to contain 52 “empty” elements. 
+Set k to 0.
+For j = 0 to 25:
+    Copy cards[j] to shuffled[k];
+    Set k to k+2. 
+Set k to 1.
+    For j = 26 to 51,
+    Copy cards[j] to shuffled[k];
+    Set k to k+2.
+```
 This approach moves the first half of cards to the even index positions of shuffled, and it moves the second half of cards to the odd index positions of shuffled.
-Selection Shuffle
-The Knuth-Fisher-Yates Shuffle is a random shuffle, in that each card has an equally likely chance of ending up in a given position. For an array cards of length n:
-•	for k = n-1 down to 1:
-o	Generate a random integer r between 0 and k, inclusive;
-o	Exchange cards[k] and cards[r]
-This has the same structure as selection sort: For k = 51 down to 1,
-•	Find r, the position of the largest value among cards[0] through cards[k];
-•	Exchange cards[k] and cards[r].
+
+#### Selection Shuffle
+The [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) is a random shuffle, in that each card has an equally likely chance of ending up in a given position. For an array cards of length $n$:
+```pseudo
+for k = n-1 down to 1:
+    Generate a random integer r between 0 and k, inclusive;
+    Exchange cards[k] and cards[r]
+```
+This has the same structure as [selection sort](https://en.wikipedia.org/wiki/Selection_sort): 
+```pseudo
+For k = 51 down to 1,
+    Find r, the position of the largest value among cards[0] through cards[k];
+    Exchange cards[k] and cards[r]
+```
 
 The selection shuffle algorithm does not require to a loop to find the largest (or smallest) value to swap, so it works quickly.
 
-Implementation:
-1)	In the Deck class, add a public void method called perfectShuffle and implement the perfect shuffle algorithm from above.  This method should reset the size variable to the number of cards in the full deck.
-2)	Implement the Selection shuffle in the body of the shuffle method you created earlier. (Don’t forget to reset the size variable.
+### Implementation:
+1)	In the `Deck` class, add a `public void` method called `perfectShuffle` and implement the perfect shuffle algorithm.  This method should reset the `size` variable to the number of cards in the full deck.
+2)	Implement the selection shuffle in the body of the shuffle method you created earlier. (Don’t forget to reset the `size` variable).
 3)	Test both methods, and in particular verify that eight perfect shuffles returns the deck to its original state.
-4)	Modify your perfect shuffle algorithm so the original top card is now second from the top (make another method called inShuffle).  If implemented correctly, this should reverse the order of the deck after 26 shuffles!
- 
+4)	Modify your perfect shuffle algorithm so the original top card is now second from the top (make another method called `inShuffle`).  If implemented correctly, this should reverse the order of the deck after 26 shuffles!
