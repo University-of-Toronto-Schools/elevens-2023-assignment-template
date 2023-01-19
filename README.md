@@ -35,10 +35,11 @@ Complete the implementation of the provided `Card` class. You will be required t
     * getters for the instance variables (these should be called `getRank` and `getSuit`);
     * a method called `matches` that takes one parameter of type `Card` called `other` and returns `true` if `this` and `other` represent the same card.
 4)	When you are done, check that it complies correctly and compare with someone else.  Note any differences and similarities between your solutions.
-5)	Create several objects in your workspace:
-    *	create two objects that are identical (same rank and suit)
-    *	create another object that has the same rank, but different suit.
-    *	create another object that has the same suit as the two identical cards, but a different rank.
+5)  <a name="test1" />Create several objects in your workspace:
+    * create two objects that are identical (same rank and suit)
+    * create another object that has the same rank, but different suit.
+    * create another object that has the same suit as the two identical cards, but a different rank.
+    * run the `matches` method and make sure that it gives the desired result
  
 
 ## Activity 2: Improving the Card class with `enum` 
@@ -117,10 +118,10 @@ The Suit class should have four values: `CLUBS, DIAMONDS, HEARTS, SPADES`; the `
     * Add a (`public`) "getter" method `getPointValue`.
 3)	Update your `Card` class to use the `enum` types you have created.
 4)	In the `Card` class, write a main method to re-implement the tests from Activity 1: Design and Create a Card Class.
-5)	Add a method to the Card class called print that prints a string in the format “<N> of <suit>” if the rank of the card is TWO-TEN, and print “<rank> of <suit>” otherwise.  The string should be all lower case.
-(Hints: 
-enums can be used in switch statements.
-•	use the name() method from enum
+5)	Add a method to the `Card` class called `print` that prints a `String` in the format `<*N*> of <*suit*>` if the rank of the card is TWO-TEN, and print “<rank> of <suit>” otherwise.  The string should be all lower case.
+    **Notes**
+    * enums can be used in switch statements.
+    * use the name() method from enum
 •	use the toLowerCase() method from String
 6)	Add a call to print to your main method.
  
