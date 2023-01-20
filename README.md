@@ -211,7 +211,7 @@ The selection shuffle algorithm does not require to a loop to find the largest (
 3)	Test both methods, and in particular verify that eight perfect shuffles returns the deck to its original state.
 4)	Modify your perfect shuffle algorithm so the original top card is now second from the top (make another method called `inShuffle`).  If implemented correctly, this should reverse the order of the deck after 26 shuffles!
 
-## Activity 6: The `toString()` Method
+## Activity 5: The `toString()` Method
 
 ### Introduction 
 Every class starts out with several inherited methods, one of which is `toString()`.  Its default behaviour is rarely what the programmer needs, so it is usually **overridden**.  In this activity, we will examine the default behaviour of `toString()`, and then modify that behaviour to meet the needs of the project.
@@ -246,3 +246,29 @@ The `@Override` lets the compiler know that you intend to override this method, 
 4) Override the `toString` method in the `Deck` class.  It should return a `String` with one line for each card left in the deck (**not** each card in the `ArrayList`!).  You can accomplish this using a `for` loop and either concatenation or a [StringBuilder](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/StringBuilder.html) object.
 
 5) Describe the difference between the `print()` and `toString()` methods in `Card`.
+
+## Activity 6: Play Elevens
+
+### Introduction
+
+In this activity, the game Elevens will be explained, and you will play an interactive version of the game.
+
+### Exploration
+
+The solitaire game of Elevens uses a deck of 52 cards, with ranks A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), and K (king), and suits &#x2663;&#xFE0F; (clubs), &#x2666;&#xFE0F; (diamonds), &#x2665;&#xFE0F; (hearts), and &#x2660;&#xFE0F; (spades). Here is how it is played.
+1)	The deck is shuffled, and nine cards are dealt “face up” from the deck to the board.
+2)	Then the following sequence of steps is repeated:
+    * The player removes each pair of cards (A, 2, … , 10) that total 11, e.g., an 8 and a 3, or a 10 and an A. An ace is worth 1, and suits are ignored when determining cards to remove.
+    * Any triplet consisting of a J, a Q, and a K is also removed by the player. Suits are also ignored when determining which cards to remove.
+    * Cards are dealt from the deck if possible to replace the cards just removed.
+3) The game is won when the deck is empty and no cards remain on the table.
+
+An interactive GUI version of Elevens allows one to play by clicking card images and buttons rather than by handling actual cards. When `Elevens.jar` is run, the cards on the board are displayed in a window. Clicking on an unselected card selects it; clicking on a selected card unselects it. Clicking on the 'Replace' button first checks that the selection is legal; if so, it does the removal and deals cards to fill the empty slots. Clicking on the 'Restart' button restarts the game.
+
+The git repository for this assignment contains the file `Elevens.jar`, which runs an GUI-based implementation of the Elevens game.  It can be run either by double-clicking or from the command line:
+
+```PowerShell
+java -jar Elevens.jar
+```
+
+Play through a few games of Elevens to get a feel for how the game works.
