@@ -130,7 +130,7 @@ The Suit class should have four values: `CLUBS, DIAMONDS, HEARTS, SPADES`; the `
 ## Activity 3: Initial Design of a Deck Class
 
 ### Introduction:
-A standard deck contains 52 cards, one of each rank/suit combination ( ).  In this Activity, you will write a Deck class that represents a collection of Cards 
+A standard deck contains 52 cards, one of each [rank/suit combination](https://en.wikipedia.org/wiki/Standard_52-card_deck) ($13\times 4 = 52$).  In this Activity, you will write a Deck class that represents a collection of Cards 
 
 ### Exploration:
 What instance variables do you need to represent a deck of cards?
