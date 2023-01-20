@@ -119,7 +119,7 @@ The Suit class should have four values: `CLUBS, DIAMONDS, HEARTS, SPADES`; the `
 3)	Update your `Card` class to use the `enum` types you have created.
 4)	In the `Card` class, write a main method to re-implement the tests from Activity 1: Design and Create a Card Class.
 5)	Add a method to the `Card` class called `print` that prints a `String` in the format `<N> of <suit>` if the rank of the card is `TWO-TEN`, and print 
-"<rank> of <suit>" otherwise.  The string should be all lower case.
+`<rank> of <suit>` otherwise.  The string should be all lower case.
     **Notes**
     * `enum`s can be used in `switch` statements.
     * `enum`s can be compared with `==`
