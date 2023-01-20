@@ -219,7 +219,7 @@ Every class starts out with several inherited methods, one of which is `toString
 ### Exploration
 In BlueJ, create an object of type `Card`.  Right-click to pull up the context menu, then select "Inherited from Object".
 
-![Inherited from Object](\img\02-inherited-from-object.png)
+![Inherited from Object](/img/02-inherited-from-object.png)
 
 Run the method `toString()` and observe the output.  What do you think it represents?
 
