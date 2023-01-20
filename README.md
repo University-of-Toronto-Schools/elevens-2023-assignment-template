@@ -118,8 +118,8 @@ The Suit class should have four values: `CLUBS, DIAMONDS, HEARTS, SPADES`; the `
     * Add a (`public`) "getter" method `getPointValue`.
 3)	Update your `Card` class to use the `enum` types you have created.
 4)	In the `Card` class, write a main method to re-implement the tests from Activity 1: Design and Create a Card Class.
-5)	Add a method to the `Card` class called `print` that prints a `String` in the format `<*N*> of <*suit*>` if the rank of the card is `TWO-TEN`, and print 
-"<*rank*> of <*suit*>" otherwise.  The string should be all lower case.
+5)	Add a method to the `Card` class called `print` that prints a `String` in the format `<N> of <suit>` if the rank of the card is `TWO-TEN`, and print 
+"<rank> of <suit>" otherwise.  The string should be all lower case.
     **Notes**
     * `enum`s can be used in `switch` statements.
     * `enum`s can be compared with `==`
@@ -210,3 +210,39 @@ The selection shuffle algorithm does not require to a loop to find the largest (
 2)	Implement the selection shuffle in the body of the shuffle method you created earlier. (Don’t forget to reset the `size` variable).
 3)	Test both methods, and in particular verify that eight perfect shuffles returns the deck to its original state.
 4)	Modify your perfect shuffle algorithm so the original top card is now second from the top (make another method called `inShuffle`).  If implemented correctly, this should reverse the order of the deck after 26 shuffles!
+
+## Activity 6: The `toString()` Method
+
+### Introduction 
+Every class starts out with several inherited methods, one of which is `toString()`.  Its default behaviour is rarely what the programmer needs, so it is usually **overridden**.  In this activity, we will examine the default behaviour of `toString()`, and then modify that behaviour to meet the needs of the project.
+
+### Exploration
+In BlueJ, create an object of type `Card`.  Right-click to pull up the context menu, then select "Inherited from Object".
+
+![Inherited from Object](\img\02-inherited-from-object.png)
+
+Run the method `toString()` and observe the output.  What do you think it represents?
+
+While this information can sometimes be helpful, it is common to **override** the `toString()` method.  There will be much more to say about overriding later, but for now we will see how to override the `toString()` method in our classes.
+
+### Implementation
+The Graphical User Interface (or GUI, pronounced 'gooey') for the Elevens game requires that `Card`'s `toString()` method returns a string in the form `<N><suit>` for number cards (2-10) and `<rank><suit>` for aces and face cards.  For example, `toString` should return `8hearts` for the eight of hearts and `acespades` for the ace of spades.
+
+1) Override the `toString` method in the `Suit` class.  To override a method, put `@Override` on a single line, then write the method as you normally would: 
+
+```java
+@Override
+public String toString(){
+    return name().toLowerCase();
+}
+```
+
+The `@Override` lets the compiler know that you intend to override this method, and checks that you have done it correctly.  This means it must have the same **signature** as the original method, that is, the same return type and parameter list.
+
+2) Override the `toString` method in the `Rank` class. To return `"<N>"` if the rank is `TWO-TEN`, and `"<rank>"` otherwise (the string should be all lower case).  For example, `Rank.NINE.toString()` should return the `String` `"9"` and `Rank.KING.toString()` should return the `String` `"king"`.  (You can make use of the `getPointValue()` and `name()` methods, and a `switch` statement.)
+
+3) Override the `toString` method in the `Card` class so it has the behaviour described above.  You should accomplish this by calling the two methods you just wrote.
+
+4) Override the `toString` method in the `Deck` class.  It should return a `String` with one line for each card left in the deck (**not** each card in the `ArrayList`!).  You can accomplish this using a `for` loop and either concatenation or a [StringBuilder](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/StringBuilder.html) object.
+
+5) Describe the difference between the `print()` and `toString()` methods in `Card`.
