@@ -196,12 +196,6 @@ for k = n-1 down to 1:
     Generate a random integer r between 0 and k, inclusive;
     Exchange cards[k] and cards[r]
 ```
-This has the same structure as [selection sort](https://en.wikipedia.org/wiki/Selection_sort): 
-```pseudo
-For k = 51 down to 1,
-    Find r, the position of the largest value among cards[0] through cards[k];
-    Exchange cards[k] and cards[r]
-```
 
 The selection shuffle algorithm does not require to a loop to find the largest (or smallest) value to swap, so it works quickly.
 
@@ -272,3 +266,13 @@ java -jar Elevens.jar
 ```
 
 Play through a few games of Elevens to get a feel for how the game works.
+
+## Activity 7: Design the `ElevensBoard` class
+
+### Introduction
+
+Now that you have played the Elevens game, we will design the `ElevensBoard` class.  This class will contain the **state** and **behavior** of the Elevens game.
+
+### Exploration
+
+
