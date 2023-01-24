@@ -250,9 +250,9 @@ In this activity, the game Elevens will be explained, and you will play an inter
 ### Exploration
 
 The solitaire game of Elevens uses a deck of 52 cards, with ranks A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), and K (king), and suits &#x2663;&#xFE0F; (clubs), &#x2666;&#xFE0F; (diamonds), &#x2665;&#xFE0F; (hearts), and &#x2660;&#xFE0F; (spades). Here is how it is played.
-1)	The deck is shuffled, and nine cards are dealt “face up” from the deck to the board.
+1)	The deck is shuffled, and nine cards are dealt "face up" from the deck to the board.
 2)	Then the following sequence of steps is repeated:
-    * The player removes each pair of cards (A, 2, … , 10) that total 11, e.g., an 8 and a 3, or a 10 and an A. An ace is worth 1, and suits are ignored when determining cards to remove.
+    * The player removes each pair of cards (A, 2, ... , 10) that total 11, e.g., an 8 and a 3, or a 10 and an A. An ace is worth 1, and suits are ignored when determining cards to remove.  Face cards are worth 0.
     * Any triplet consisting of a J, a Q, and a K is also removed by the player. Suits are also ignored when determining which cards to remove.
     * Cards are dealt from the deck if possible to replace the cards just removed.
 3) The game is won when the deck is empty and no cards remain on the table.
@@ -271,8 +271,187 @@ Play through a few games of Elevens to get a feel for how the game works.
 
 ### Introduction
 
-Now that you have played the Elevens game, we will design the `ElevensBoard` class.  This class will contain the **state** and **behavior** of the Elevens game.
+Now that you have played the Elevens game, we will design the `ElevensBoard` class.  This class will contain the **state** and **behavior** of the Elevens game.  We will also introduce **subclasses** and **abstract classes**
 
 ### Exploration
 
+Before we design the `ElevensBoard`,  read the following descriptions of two other solitare games:
 
+    #### Thirteens
+    The solitaire game of Thirteens uses a deck of 52 cards, with ranks A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), and K (king), and suits &#x2663;&#xFE0F; (clubs), &#x2666;&#xFE0F; (diamonds), &#x2665;&#xFE0F; (hearts), and &#x2660;&#xFE0F; (spades). Here is how it is played.
+    1)	The deck is shuffled, and ten cards are dealt "face up" from the deck to the board.
+    2)	Then the following sequence of steps is repeated:
+        * The player removes each pair of cards (A, 2,..., 10) that total 13, e.g., an 8 and a 5, or a Q and an A. An ace is worth 1, and suits are ignored when determining cards to remove.  Jacks are worth 11, and queens 12.
+        * K has a value of 13, and so may be removed singly.
+        * Cards are dealt from the deck if possible to replace the cards just removed.
+    3) The game is won when the deck is empty and no cards remain on the table.
+    
+    #### Tens
+    The solitaire game of Tens uses a deck of 52 cards, with ranks A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), and K (king), and suits &#x2663;&#xFE0F; (clubs), &#x2666;&#xFE0F; (diamonds), &#x2665;&#xFE0F; (hearts), and &#x2660;&#xFE0F; (spades). Here is how it is played.
+    1)	The deck is shuffled, and thirteen cards are dealt "face up" from the deck to the board.
+    2)	Then the following sequence of steps is repeated:
+        * The player removes each pair of cards (A, 2,..., 9) that total 10, e.g., an 8 and a 2, or a 9 and an A. An ace is worth 1, and suits are ignored when determining cards to remove.  10, J,Q and K are worth zero points.
+        * Groups of 4 cards may be removed if they all have equal rank, and that common rank is 10,J,Q or K. For example, the four cards Q &#x2663;&#xFE0F;,  Q &#x2666;&#xFE0F;, Q &#x2665;&#xFE0F;, Q &#x2660;&#xFE0F;.
+        * Cards are dealt from the deck if possible to replace the cards just removed.
+    3) The game is won when the deck is empty and no cards remain on the table.
+    
+These three games, along with Elevens, have several similarities, along with several differences.
+
+### Implementation
+
+1) Below is a list of instance fields and methods that you might include in a class definition for `ElevensBoard`. 
+    * identify attributes and behaviours that can be used interchangably (i.e. they could be written once and reused as-is),
+    * identify attributes and behaviours that are required for each of the three games, but would need to be redefined for each game,
+    * identify attributes and behaviours that would not be used by Thirteens or Tens.
+    
+```java
+    /**
+     * The cards on this board.
+     */
+    private Card[] cards;
+
+    /**
+     * The deck of cards being used to play the current game.
+     */
+    private Deck deck;
+    
+    /**
+     * The size (number of cards) on the board.
+     */
+    private static final int BOARD_SIZE = 9;
+    
+    /**
+     * Start a new game by shuffling the deck and
+     * dealing some cards to this board.
+     */
+    public void newGame() {
+    }
+
+     /**
+     * Accesses the size of the board.
+     * Note that this is not the number of cards it contains,
+     * which will be smaller near the end of a winning game.
+     * @return the size of the board
+     */
+    public int size() {
+    }
+
+    /**
+     * Determines if the board is empty (has no cards).
+     * @return true if this board is empty; false otherwise.
+     */
+    public boolean isEmpty() {
+    }
+
+    /**
+     * Deal a card to the kth position in this board.
+     * If the deck is empty, the kth card is set to null.
+     * @param k the index of the card to be dealt.
+     */
+    public void deal(int k) {
+    }
+
+    /**
+     * Accesses the deck's size.
+     * @return the number of undealt cards left in the deck.
+     */
+    public int deckSize() {
+    }
+
+    /**
+     * Accesses a card on the board.
+     * @return the card at position k on the board.
+     * @param k is the board position of the card to return.
+     */
+    public Card cardAt(int k) {
+    }
+
+    /**
+     * Replaces selected cards on the board by dealing new cards.
+     * @param selectedCards is a list of the indices of the
+     *        cards to be replaced.
+     */
+    public void replaceSelectedCards(List<Integer> selectedCards) {
+    }
+
+    /**
+     * Gets the indexes of the actual (non-null) cards on the board.
+     *
+     * @return a List that contains the locations (indexes)
+     *         of the non-null entries on the board.
+     */
+    public List<Integer> cardIndexes() {
+    }
+
+    /**
+     * Generates and returns a string representation of this board.
+     * @return the string version of this board.
+     */
+    public String toString() {
+    }
+
+    /**
+     * Determine whether or not the game has been won,
+     * i.e. neither the board nor the deck has any more cards.
+     * @return true when the current game has been won;
+     *         false otherwise.
+     */
+    public boolean gameIsWon() {
+    }
+
+    /**
+     * Determinesif the selected cards form a valid group for removal.
+     * @param selectedCards the list of the indices of the selected cards.
+     * @return true if the selected cards form a valid group for removal;
+     *         false otherwise.
+     */
+    public boolean isLegal(List<Integer> selectedCards){
+    }
+
+    /**
+     * Determines if there are any legal plays left on the board.
+     * @return true if there is a legal play left on the board;
+     *         false otherwise.
+     */
+    public boolean anotherPlayIsPossible(){
+    }
+
+    /**
+     * Deal cards to this board to start the game.
+     */
+    private void dealMyCards() {
+    }
+    
+    private boolean containsPairSum11(List<Integer> selectedCards) {
+    }
+    
+
+    /**
+     * Check for a JQK in the selected cards.
+     * @param selectedCards selects a subset of this board.  It is list
+     *                      of indexes into this board that are searched
+     *                      to find a JQK group.
+     * @return true if the board entries in selectedCards
+     *   include a jack, a queen, and a king; false otherwise.
+     */
+    private boolean containsJQK(List<Integer> selectedCards) {
+    }
+    
+    /** 
+    * return the point value for this card
+    * @param selectedCards selects a subset of this board.  It is list
+     *                      of indexes into this board that are searched
+     *                      to find a JQK group.
+     * @return true if the board entries in selectedCards
+     *   include a jack, a queen, and a king; false otherwise.
+     */
+    private int pointValue(Card card){
+    }
+```
+
+2) Currently, the point value of a card is an attribute of its rank; however, as you have realized the point value is specific to the game.  There are various ways to handle this: create different `Rank`-type classes for specific games, create different `Card`-type classes for specific games, or (as we have done here) make a method that assigns point values in the class that defines the rules.  Having already written a class that has the correct point values for Elevens, you may wish to keep it that way, but note that it is not necessary.
+
+3) Given that each of these games uses a standard 52-card deck, it is appropriate to add a "no-arg" constructor to your `Deck` class.
+    * in the `Deck.java` file, add a constructor that takes no arguments and returns a standard 52-card deck.
+    * if you want to call the constructor you have written previously, the syntax for calling a constructor from within the same class is `this(<params>)`, where `<params>` is the parameter list of the constructor being called.
+    
