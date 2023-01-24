@@ -277,32 +277,32 @@ Now that you have played the Elevens game, we will design the `ElevensBoard` cla
 
 Before we design the `ElevensBoard`,  read the following descriptions of two other solitare games:
 
-    #### Thirteens
-    The solitaire game of Thirteens uses a deck of 52 cards, with ranks A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), and K (king), and suits &#x2663;&#xFE0F; (clubs), &#x2666;&#xFE0F; (diamonds), &#x2665;&#xFE0F; (hearts), and &#x2660;&#xFE0F; (spades). Here is how it is played.
-    1)	The deck is shuffled, and ten cards are dealt "face up" from the deck to the board.
-    2)	Then the following sequence of steps is repeated:
-        * The player removes each pair of cards (A, 2,..., 10) that total 13, e.g., an 8 and a 5, or a Q and an A. An ace is worth 1, and suits are ignored when determining cards to remove.  Jacks are worth 11, and queens 12.
-        * K has a value of 13, and so may be removed singly.
-        * Cards are dealt from the deck if possible to replace the cards just removed.
-    3) The game is won when the deck is empty and no cards remain on the table.
+#### Thirteens
+The solitaire game of Thirteens uses a deck of 52 cards, with ranks A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), and K (king), and suits &#x2663;&#xFE0F; (clubs), &#x2666;&#xFE0F; (diamonds), &#x2665;&#xFE0F; (hearts), and &#x2660;&#xFE0F; (spades). Here is how it is played.
+1)	The deck is shuffled, and ten cards are dealt "face up" from the deck to the board.
+2)	Then the following sequence of steps is repeated:
+    * The player removes each pair of cards (A, 2,..., 10) that total 13, e.g., an 8 and a 5, or a Q and an A. An ace is worth 1, and suits are ignored when determining cards to remove.  Jacks are worth 11, and queens 12.
+    * K has a value of 13, and so may be removed singly.
+    * Cards are dealt from the deck if possible to replace the cards just removed.
+3) The game is won when the deck is empty and no cards remain on the table.
     
-    #### Tens
-    The solitaire game of Tens uses a deck of 52 cards, with ranks A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), and K (king), and suits &#x2663;&#xFE0F; (clubs), &#x2666;&#xFE0F; (diamonds), &#x2665;&#xFE0F; (hearts), and &#x2660;&#xFE0F; (spades). Here is how it is played.
-    1)	The deck is shuffled, and thirteen cards are dealt "face up" from the deck to the board.
-    2)	Then the following sequence of steps is repeated:
-        * The player removes each pair of cards (A, 2,..., 9) that total 10, e.g., an 8 and a 2, or a 9 and an A. An ace is worth 1, and suits are ignored when determining cards to remove.  10, J,Q and K are worth zero points.
-        * Groups of 4 cards may be removed if they all have equal rank, and that common rank is 10,J,Q or K. For example, the four cards Q &#x2663;&#xFE0F;,  Q &#x2666;&#xFE0F;, Q &#x2665;&#xFE0F;, Q &#x2660;&#xFE0F;.
-        * Cards are dealt from the deck if possible to replace the cards just removed.
-    3) The game is won when the deck is empty and no cards remain on the table.
+#### Tens
+The solitaire game of Tens uses a deck of 52 cards, with ranks A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), and K (king), and suits &#x2663;&#xFE0F; (clubs), &#x2666;&#xFE0F; (diamonds), &#x2665;&#xFE0F; (hearts), and &#x2660;&#xFE0F; (spades). Here is how it is played.
+1)	The deck is shuffled, and thirteen cards are dealt "face up" from the deck to the board.
+2)	Then the following sequence of steps is repeated:
+    * The player removes each pair of cards (A, 2,..., 9) that total 10, e.g., an 8 and a 2, or a 9 and an A. An ace is worth 1, and suits are ignored when determining cards to remove.  10, J,Q and K are worth zero points.
+    * Groups of 4 cards may be removed if they all have equal rank, and that common rank is 10,J,Q or K. For example, the four cards Q &#x2663;&#xFE0F;,  Q &#x2666;&#xFE0F;, Q &#x2665;&#xFE0F;, Q &#x2660;&#xFE0F;.
+    * Cards are dealt from the deck if possible to replace the cards just removed.
+3) The game is won when the deck is empty and no cards remain on the table.
     
 These three games, along with Elevens, have several similarities, along with several differences.
 
 ### Implementation
 
 1) Below is a list of instance fields and methods that you might include in a class definition for `ElevensBoard`. 
-    * identify attributes and behaviours that can be used interchangably (i.e. they could be written once and reused as-is),
-    * identify attributes and behaviours that are required for each of the three games, but would need to be redefined for each game,
-    * identify attributes and behaviours that would not be used by Thirteens or Tens.
+    * identify attributes and behaviours that can be used **interchangably** (i.e. they could be written once and reused as-is),
+    * identify attributes and behaviours that are required for each of the three games, **but would need to be redefined for each game*,
+    * identify attributes and behaviours that **would not be used by Thirteens or Tens**.
     
 ```java
     /**
