@@ -46,7 +46,7 @@ public class ElevensBoard extends Board{
      */
     
     public boolean isLegal(List<Integer> selectedCards) {
-        // TODO: implement 
+        // TODO: implement isLegal
         return false;
     }
 

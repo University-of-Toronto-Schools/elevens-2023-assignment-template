@@ -35,7 +35,7 @@ Complete the implementation of the provided `Card` class. You will be required t
     * getters for the instance variables (these should be called `getRank` and `getSuit`);
     * a method called `matches` that takes one parameter of type `Card` called `other` and returns `true` if `this` and `other` represent the same card.
 4)	When you are done, check that it complies correctly and compare with someone else.  Note any differences and similarities between your solutions.
-5)  <a name="test1" />Create several objects in your workspace:
+5)  Create several objects in your workspace:
     * create two objects that are identical (same rank and suit)
     * create another object that has the same rank, but different suit.
     * create another object that has the same suit as the two identical cards, but a different rank.
@@ -172,7 +172,7 @@ Think about how you shuffle a deck of cards by hand. How well do you think it ra
 ### Exploration:
 We now consider the shuffling of a deck, that is, the permutation of its cards into a random-looking sequence. A requirement of the shuffling procedure is that any particular permutation has just as much chance of occurring as any other. We will be using the `Math.random()` method to generate random numbers to produce these permutations. Several ideas for designing a shuffling method come to mind. We will consider two:
 #### Perfect (Faro) Shuffle
-Card players often shuffle by splitting the deck in half and then interleaving the two half-decks.  (See [Faro Shuffle](https://en.wikipedia.org/wiki/Faro_shuffle) ).
+Card players often shuffle by splitting the deck in half and then interleaving the two half-decks.  (See [Faro Shuffle][def]).
 
 This procedure is called a perfect (or faro) shuffle if the interleaving alternates between the two half-decks. Unfortunately, the perfect shuffle comes nowhere near generating all possible deck permutations. In fact, eight shuffles of a 52-card deck return the deck to its original state!
 Consider the following “perfect shuffle” algorithm that starts with an array named cards that contains 52 cards and creates an array named shuffled.
@@ -190,6 +190,7 @@ Set k to 1.
 This approach moves the first half of cards to the even index positions of shuffled, and it moves the second half of cards to the odd index positions of shuffled.
 
 #### Selection Shuffle
+
 The [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) is a random shuffle, in that each card has an equally likely chance of ending up in a given position. For an array cards of length $n$:
 ```pseudo
 for k = n-1 down to 1:
@@ -301,7 +302,7 @@ These three games, along with Elevens, have several similarities, along with sev
 
 1) Below is a list of instance fields and methods that you might include in a class definition for `ElevensBoard`. 
     * identify attributes and behaviours that can be used **interchangably** (i.e. they could be written once and reused as-is),
-    * identify attributes and behaviours that are required for each of the three games, **but would need to be redefined for each game*,
+    * identify attributes and behaviours that are required for each of the three games, **but would need to be redefined for each game**,
     * identify attributes and behaviours that **would not be used by Thirteens or Tens**.
     
 ```java
@@ -469,7 +470,9 @@ Open the file `Board.java` in your IDE.  Read through the code, and observe:
 * there are definitions and implementations for the instance fields and methods from the listing above that can be used interchangably for the three solitare games.
 * there are method headers, but no method bodies, for methods that each solitare game needs, but would have different definitions.  These method headers also contiain the keyword `abstract`.
 
-`Board` is called an **abstract class**.  Abstract classes cannot be instantiated; instead, they act as supertypes for **concrete classes**.  Below is a diagram that shows the relationship between `Board` and `ElevensBoard`, `ThirteensBoard` and `TensBoard`.  The arrow should be read "**IS-A**", so `ElevensBoard` **is a** `Board`.
+`Board` is called an **abstract class**.  Abstract classes cannot be instantiated; instead, they act as supertypes for **concrete classes**.  Below is a diagram that shows the relationship between `Board` and `ElevensBoard`, `ThirteensBoard` and `TensBoard`.  The arrow should be read "**IS-A**", so `ElevensBoard` **is a** `Board`.  The IS-A relationship is a fundamental feature of object-oriented design, and we will have much more to say about it later.
+
+![Inheritance diagram](img/03%20-%20inheritance.png)
 
 The "is-a" relationship is created using the keyword `extends` when defining a class; in this case, the class header for `ElevensBoard` is
 ```java
@@ -477,6 +480,22 @@ public class ElevensBoard extends Board{
     ...
 }
 ```
+and similarly for `TensBoard` and `ThirteensBoard`.  
+**Notes**  
+* when a class an extension of another class, it **inherits** all the `public` (non-`abstract`) from its **superclass**, i.e. all the methods of `Board` are now also methods of `ElevensBoard`
+* `ElevensBoard` can **override** methods of the `Board` class using the same syntax as above when we redefined the `toString()` methods.  We will not override any of the implemented methods of `Board`.
+* However, because `Board` is an abstract class, the subclass `ElevensBoard` *must* implement all the `abstract` methods.  The compiler will insist.
+* Subclasses do not have access to `private` instance fields or methods of the parent class.
+* A subclass can also define additional methods to those in the abstract "contract", and they can be either `public` or `private`.  
+* A subclss can also have its own (`private`) instance variables.
+
+### Implementation
+
+1) If you haven't already, open the `ElevensBoard.java` file and get yourself oriented.  
+   * there are four methods for you to implement; you do not need to alter any of the other code in the file, but you should have a look.
+   * although you won't be altering the code in `Board`, you should keep that file open so you can refer to the definitions and documentation.  Remember that you can use all the `public` methods __as if they are defined in the__ `ElevensBoard` __class__.
+   * Some of the methods take an argument of type `ArrayList<Integer>`. While you don't have to be concerned with how those lists are constructed, it's important to understand what they mean: each `Integer` represents the **index in the array** `cards` of a `Card` that has been selected in the GUI.  You can't directly access `cards`, so use the `cardAt` method from `Board` to retrieve the appropriate `Card` object.
+   * Remember that auto-boxing and unboxing makes it very easy to switch between `Integer` and `int`.  While you need to understand the difference theoretically, in practice just treat them the same until the compiler complains &#x1f600;
 
 
-`Board` is called an **abstract class**.  Abstract classes cannot be instantiated; instead, they act as supertypes for **concrete classes**.  Below is a diagram that shows the relationship between `Board` and `ElevensBoard`, `ThirteensBoard` and `TensBoard`.  The arrow should be read as "**IS-A**"
+[def]: https://en.wikipedia.org/wiki/Faro_shuffle
