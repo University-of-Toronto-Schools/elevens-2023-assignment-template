@@ -470,4 +470,4 @@ Open the file `Board.java` in your IDE.  Read through the code, and observe:
 * there are method headers, but no method bodies, for methods that each solitare game needs, but would have different definitions.  These method headers also contiain
 the keyword `abstract`.
 
-`Board` is called an **abstract class**.  Abstract classes cannot be instantiated; instead, they act as supertypes for **concrete classes**.
+`Board` is called an **abstract class**.  Abstract classes cannot be instantiated; instead, they act as supertypes for **concrete classes**.  Below is a diagram that shows the relationship between `Board` and `ElevensBoard`, `ThirteensBoard` and `TensBoard`.  The arrow should be read as "**IS-A**"
