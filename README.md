@@ -119,8 +119,8 @@ The Suit class should have four values: `CLUBS, DIAMONDS, HEARTS, SPADES`; the `
 3)	Update your `Card` class to use the `enum` types you have created.
 4)	In the `Card` class, write a main method to re-implement the tests from Activity 1: Design and Create a Card Class.
 5)	Add a method to the `Card` class called `print` that prints a `String` in the format `<N> of <suit>` if the rank of the card is `TWO-TEN`, and print 
-`<rank> of <suit>` otherwise.  The string should be all lower case.
-    **Notes**
+`<rank> of <suit>` otherwise.  The string should be all lower case.  
+**Notes**
     * `enum`s can be used in `switch` statements.
     * `enum`s can be compared with `==`
     * use the `name()` method from `enum`
@@ -231,7 +231,7 @@ public String toString(){
 }
 ```
 
-The `@Override` lets the compiler know that you intend to override this method, and checks that you have done it correctly.  This means it must have the same **signature** as the original method, that is, the same return type and parameter list.
+The `@Override` lets the compiler know that you intend to override this method, and checks that you have done it correctly.  This means it must have the same **signature** as the original method, that is, the same name and parameter list.
 
 2) Override the `toString` method in the `Rank` class. To return `"<N>"` if the rank is `TWO-TEN`, and `"<rank>"` otherwise (the string should be all lower case).  For example, `Rank.NINE.toString()` should return the `String` `"9"` and `Rank.KING.toString()` should return the `String` `"king"`.  (You can make use of the `getPointValue()` and `name()` methods, and a `switch` statement.)
 
@@ -455,3 +455,19 @@ These three games, along with Elevens, have several similarities, along with sev
     * in the `Deck.java` file, add a constructor that takes no arguments and returns a standard 52-card deck.
     * if you want to call the constructor you have written previously, the syntax for calling a constructor from within the same class is `this(<params>)`, where `<params>` is the parameter list of the constructor being called.
     
+## Activity 8: Write the `ElevensBoard` Class
+
+### Introduction
+
+We will now use the classes `Rank`, `Suit`, `Card` and `Deck` to write the `ElevensBoard` class, which defines the rules of the game and allows the GUI to play an interactive version.  Along the way we will encounter **subclasses** and the keywords `abstract` and `extends`.
+
+### Exploration
+
+Open the file `Board.java` in your IDE.  Read through the code, and observe:
+
+* the class definition contains the keyword `abstract`
+* there are definitions and implementations for the instance fields and methods from the listing above that can be used interchangably for the three solitare games.
+* there are method headers, but no method bodies, for methods that each solitare game needs, but would have different definitions.  These method headers also contiain
+the keyword `abstract`.
+
+`Board` is called an **abstract class**.  Abstract classes cannot be instantiated; instead, they act as supertypes for **concrete classes**.
