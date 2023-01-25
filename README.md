@@ -467,7 +467,16 @@ Open the file `Board.java` in your IDE.  Read through the code, and observe:
 
 * the class definition contains the keyword `abstract`
 * there are definitions and implementations for the instance fields and methods from the listing above that can be used interchangably for the three solitare games.
-* there are method headers, but no method bodies, for methods that each solitare game needs, but would have different definitions.  These method headers also contiain
-the keyword `abstract`.
+* there are method headers, but no method bodies, for methods that each solitare game needs, but would have different definitions.  These method headers also contiain the keyword `abstract`.
+
+`Board` is called an **abstract class**.  Abstract classes cannot be instantiated; instead, they act as supertypes for **concrete classes**.  Below is a diagram that shows the relationship between `Board` and `ElevensBoard`, `ThirteensBoard` and `TensBoard`.  The arrow should be read "**IS-A**", so `ElevensBoard` **is a** `Board`.
+
+The "is-a" relationship is created using the keyword `extends` when defining a class; in this case, the class header for `ElevensBoard` is
+```java
+public class ElevensBoard extends Board{
+    ...
+}
+```
+
 
 `Board` is called an **abstract class**.  Abstract classes cannot be instantiated; instead, they act as supertypes for **concrete classes**.  Below is a diagram that shows the relationship between `Board` and `ElevensBoard`, `ThirteensBoard` and `TensBoard`.  The arrow should be read as "**IS-A**"
